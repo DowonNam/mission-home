@@ -55,10 +55,23 @@ th:with="notebookList=${mainDataDto.notebookList},
                 <input type="submit" value="노트북 삭제">
             </form>
 
-            <form th:action="@{|/books/${targetNotebook.id}/update|}" method="post">
-                <input type="submit" value="노트북 이름 변경">
-            </form>
+            <!-- The button to open modal -->
+            <label for="my_modal_6" class="btn">노트북 이름 변경</label>
 
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+            <div class="modal" role="dialog">
+                <div class="modal-box flex flex-col items-center">
+                    <form th:action="@{|/books/${targetNotebook.id}/update|}" class="flex" method="post">
+                        <input type="hidden" name="targetNoteId" th:value="${targetNote.id}">
+                        <input type="text" name="name" class="border-2" th:value="${targetNotebook.name}">
+                        <input type="submit" class="btn">
+                    </form>
+                    <div class="modal-action flex justify-center">
+                        <label for="my_modal_6" class="btn">Close!</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="bg-red-300 w-[20%] h-[800px] text-center ">
             <ul class="h-[100%] overflow-scroll">
